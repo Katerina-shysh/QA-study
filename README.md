@@ -98,3 +98,5 @@ _Примечание:_ Fiddler не считывал потребляемый �
 **Apache JMeter** — инструмент для проведения нагрузочного тестирования.
 
 # Мое [резюме](/Resume_QA/%D0%A0%D0%B5%D0%B7%D1%8E%D0%BC%D0%B5_%D0%9A%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B0%20%D0%A8%D0%B8%D1%88%D0%BA%D1%96%D0%BD%D0%B0_QA%20Engineer.pdf) Junior QA Engineer
+
+# Мой [linkedin](https://www.linkedin.com/in/kateryna-shyshkina-78392217a/)
