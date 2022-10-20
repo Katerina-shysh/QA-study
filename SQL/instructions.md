@@ -6,4 +6,5 @@
 
 #### [MariaDB](/SQL/servers/MariaDB/instructions-mariadb.md)
 
-#### 
+#### Добавление связей между таблицами
+![Пример](/SQL/Screenshot_2SQL.png "Пример")
