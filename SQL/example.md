@@ -4,50 +4,36 @@
 
 ## Задание 1
 
-Исходные данные.
+1. Исходные [данные](/SQL/document/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B2%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5_CompX.xlsx)
 
-![Пример1](/SQL/screen/0.png "Пример1")
+![Пример](/SQL/screen/0.png "Пример")
 
-Вывести уникальные название и цену для всех товаров, которые продавались 15 июня 2022 и всю следующую неделю.
+2. Данные в таблице "Nomenclatures".
 
-![Пример](/SQL/screen/1.png "Пример")
+![Пример](/SQL/screen/N.png "Пример")
 
-```mysql
-SELECT DISTINCT n_name, n_cost, n_price
-FROM Nomenclatures
-JOIN Orders
-ON n_id=ord_n_id
-WHERE ord_datetime BETWEEN'2022-06-15' 
-AND DATE_ADD('2022-06-15', INTERVAL 1 WEEK)
-```
+3. Данные в таблице "Orders".
+
+![Пример](/SQL/screen/O.png "Пример")
+
+4. Данные в таблице "Groups".
+
+![Пример](/SQL/screen/G.png "Пример")
+
+5. Вывести уникальные название и цену для всех товаров, которые продавались 15 июня 2022 и всю следующую неделю.
+
+Запрос в [SQL](/SQL/Assignments/NomenclaturesTest/product.sql)
+
+![Пример](/SQL/screen/product.png "Пример")
 
 ## Задание 2
 
 Для данных из задания 1, нарастающим итогом рассчитать, как увеличивалось количество проданной номенклатуры каждый месяц каждого года с разбивкой по группе.
 
-![Пример](/SQL/screen/2_1.png "Пример")
+Запрос в SQL с помощью [WITH](/SQL/Assignments/NomenclaturesTest/cumulative_WITH.sql)
 
-```mysql
-WITH sales as
-(
-  SELECT EXTRACT(YEAR FROM ord_datetime) as year,
-       EXTRACT(MONTH FROM ord_datetime) as month,
-       gr_id as group_number,
-       COUNT(ord_n_id) as Nomenc
-  FROM Orders
-  JOIN Nomenclatures
-  ON ord_n_id=n_id
-  JOIN Groups
-  ON n_gr_id=gr_id
-  GROUP BY EXTRACT(YEAR FROM ord_datetime),
-           EXTRACT(MONTH FROM ord_datetime),
-           gr_id 
-)
-  SELECT group_number,
-         year,
-         month,
-         SUM(Nomenc) OVER(PARTITION BY group_number
-                            ORDER BY year, month) AS cumulative_total
-  FROM sales s
-  ORDER BY group_number, year, month
-```
+![Пример](/SQL/screen/with.png "Пример")
+
+Запрос в SQL с помощью [TEMPORARY](/SQL/Assignments/NomenclaturesTest/cumulative_TEMPORARY_TABLE.sql)
+
+![Пример](/SQL/screen/T.png "Пример")
