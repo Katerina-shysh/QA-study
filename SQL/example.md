@@ -12,12 +12,14 @@
 
 ![Пример](/SQL/screen/1.png "Пример")
 
+```mysql
 SELECT DISTINCT n_name, n_cost, n_price
 FROM Nomenclatures
 JOIN Orders
 ON n_id=ord_n_id
 WHERE ord_datetime BETWEEN'2022-06-15' 
 AND DATE_ADD('2022-06-15', INTERVAL 1 WEEK)
+```
 
 ## Задание 2
 
@@ -25,6 +27,7 @@ AND DATE_ADD('2022-06-15', INTERVAL 1 WEEK)
 
 ![Пример](/SQL/screen/2_1.png "Пример")
 
+```mysql
 WITH sales as
 (
   SELECT EXTRACT(YEAR FROM ord_datetime) as year,
@@ -47,3 +50,4 @@ WITH sales as
                             ORDER BY year, month) AS cumulative_total
   FROM sales s
   ORDER BY group_number, year, month
+```
